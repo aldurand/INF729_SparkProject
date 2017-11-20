@@ -1,0 +1,27 @@
+Comment supprimer tous les répétitions de "" (guillemets) de la colonne "Value" de train.csv :
+==============================================================================================
+
+(Ce travail a été effectué directement dans le terminal en spark-shell)
+
+
+1) On lit le fichier CSV en tant que texte (càd non séparé en colonnes)
+
+val df = spark.read.text("../TP_ParisTech_2017_2018_starter/train.csv")
+
+
+
+2) On crée une colonne "replaced" qui va reprendre la colonne "value" en lui appliquant la regex : \"{2,}
+(Regex permettant de supprimer tous les quotes dès qu'il y a en au moins d'affilée)
+
+val df2 = df.withColumn("replaced", regexp_replace($"value", "\"{2,}", " "))
+
+
+
+3) On écrit un nouveau csv en sortie (il s'agit en fait d'un dossier contenant le csv découpé selon le nb de coeurs de l'ordi)
+
+df2.select("replaced").write.text("./train_clean.csv")
+
+
+4) On peut maintenant lire le nouveau csv
+
+val df3 = spark.read.csv("./train_clean.csv")
