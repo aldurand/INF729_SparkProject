@@ -5,7 +5,7 @@ Détails sur le contenu :
 - Le fichier **Cleaning\_des\_Quotes"".txt** explique comment **train\_clean.csv** a été généré.  
 - **train\_clean.csv** est l'input du programme _Preprocessor_.  
 - **prepared\_trainingset** est l'output du programme _Preprocessor_, il sert d'input au programme _Trainer_.
-
+  
 
 
 Prérequis pour lancer la partie _Preprocessor_ :  
